@@ -31,12 +31,14 @@ To run the experiments, refer to `run_test.sh` for a sample script.
 ## Citation
 If you find this repository useful in your research, please consider citing our work:
 
+```
 @inproceedings{xu2024dualdefense,
   title={Dual Defense: Enhancing Privacy and Mitigating Poisoning Attacks in Federated Learning},
   author={Xu, Runhua and Gao, Shiqi and Li, Chao and Joshi, James and Li, Jianxin},
   booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
   year={2024}
 }
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
