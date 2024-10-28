@@ -25,11 +25,10 @@ from utils.util_fusion import (
     fusion_clipping_median,
     fusion_cos_defense,
     fusion_fedavg,
-    fusion_fools_gold,
     fusion_krum,
     fusion_median,
     fusion_trimmed_mean,
-    fusion_dual_defense_enhance,
+    fusion_dual_defense,
 )
 from utils.util_logger import logger
 
@@ -457,9 +456,6 @@ class SimulationFL(ABC):
         elif self.fusion == "cos_defense":
             weighted_params = fusion_cos_defense(self.server_model, model_updates)
             return weighted_params
-        elif self.fusion == "fools_gold":
-            weighted_params = fusion_fools_gold(self.server_model, model_updates)
-            return weighted_params
         elif self.fusion == "dual_defense":
             logger.info("start hyper-guard fusion with epsilon {}".format(self.epsilon))
             lst_round_attackers = intersection_of_lists(
@@ -470,7 +466,7 @@ class SimulationFL(ABC):
                 p_id: sum(len(batch[0]) for batch in self.client_data_loader[p_id][0])
                 for p_id in self.round_client_list[round_idx]
             }
-            fused_params = fusion_dual_defense_enhance(
+            fused_params = fusion_dual_defense(
                 self.server_model,
                 model_updates,
                 data_sizes,
